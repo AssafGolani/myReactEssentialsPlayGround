@@ -6,7 +6,7 @@ import TabButton from './components/TabButton';
 
 function App() {
 
-  const [selectedTopic, setSelectedTopic] = useState('components');
+  const [selectedTopic, setSelectedTopic] = useState();
   
 
 
@@ -36,13 +36,15 @@ function App() {
             <TabButton onSelect={() => handleSelect('props')}>Props</TabButton>
             <TabButton onSelect={() => handleSelect('state')}>State</TabButton>
           </menu>
-          <div id="tab-content">
+          {!selectedTopic ? <p>Click on a tab to see an example</p> : (
+           <div id="tab-content">
             <h3>{EXAMPLES[selectedTopic].title}</h3>
             <p>{EXAMPLES[selectedTopic].description}</p>
             <pre>
               <code>{EXAMPLES[selectedTopic].code}</code>
             </pre>
           </div>
+        )}
         </section>
       </main>
     </div>
