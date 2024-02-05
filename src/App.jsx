@@ -22,19 +22,30 @@ function App() {
         <section id="core-concepts">
           <h2>Time to get started!</h2>
           <ul>
-            <CoreConcept {...CORE_CONCEPTS[0] }/>
-            <CoreConcept {...CORE_CONCEPTS[1] }/>
-            <CoreConcept {...CORE_CONCEPTS[2] } />
-            <CoreConcept {...CORE_CONCEPTS[3] }/>
+          {CORE_CONCEPTS.map((conceptItem, index) => (
+            <CoreConcept key={index} {...conceptItem} />
+          ))}
           </ul>
         </section>
         <section id="examples">
           <h2>Examples</h2>
           <menu>
-            <TabButton onSelect={() => handleSelect('components')}>Component</TabButton>
-            <TabButton onSelect={() => handleSelect('jsx')}>JSX</TabButton>
-            <TabButton onSelect={() => handleSelect('props')}>Props</TabButton>
-            <TabButton onSelect={() => handleSelect('state')}>State</TabButton>
+            <TabButton 
+            onSelect={() => handleSelect('components')}
+            isSelected={selectedTopic === 'components'}
+            >Component</TabButton>
+            <TabButton 
+            onSelect={() => handleSelect('jsx')}
+            isSelected={selectedTopic === 'jsx'}
+            >JSX</TabButton>
+            <TabButton 
+            onSelect={() => handleSelect('props')}
+            isSelected={selectedTopic === 'props'}
+            >Props</TabButton>
+            <TabButton 
+            onSelect={() => handleSelect('state')}
+            isSelected={selectedTopic === 'state'}
+            >State</TabButton>
           </menu>
           {!selectedTopic ? <p>Click on a tab to see an example</p> : (
            <div id="tab-content">
